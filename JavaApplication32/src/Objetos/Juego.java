@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Objetos;
-
-import Objetos.Pokemon;
 /**
  *
  * @author yangel
@@ -14,17 +12,13 @@ public class Juego {
     private static int time;
     private static Pokemon[] pokemones;
     private static int tamano;
-    private static Pokemon seleccionado;
-    private static Regalo_Td regalo;
+    private static Regalo_Td pregalo;
     private static int watts;
-    private static int cant_pk;
 
     public void first_time(){
-        this.setStart(System.currentTimeMillis());
         this.setTamano(0);
         this.setTime(0);
         this.setWatts(0);
-        this.setCant_pk(0);
     }
     
     public void inicio(){
@@ -40,9 +34,28 @@ public class Juego {
     }
     
     public void agg_pk(Pokemon pokemon){
-        Pokemon[] vieja = this.getPokemones();
-        int indice = this.getPokemones().length + 1;
-        Pokemon[] nueva = Pokemon[indice];
+        if(this.getTamano()==0){
+            
+            Pokemon[] nueva = new Pokemon[1];
+            nueva[0] = pokemon;
+            
+            this.setPokemones(nueva);
+            this.setTamano(this.getTamano() +1);
+        
+        }else{
+            Pokemon[] vieja = this.getPokemones();
+            Pokemon[] nueva = new Pokemon[this.getPokemones().length + 1];
+
+            for(int i = 0; i < vieja.length; i++){
+                nueva[i] = vieja[i];
+            }
+
+            nueva[vieja.length] = pokemon;
+            
+            this.setPokemones(nueva);
+            this.setTamano(this.getTamano() +1);
+        }
+        
     }
     
     
@@ -57,12 +70,14 @@ public class Juego {
     }
     
     
-    public void search_gift(){
-        
-    }
     
-    public void gift(int costo){
-        
+    public void agg_RTd(Regalo_Td regalo){
+        if(this.getPregalo() == null){
+            this.setPregalo(regalo);   
+        }else{
+            this.getPregalo().insertar(regalo);
+        }
+    
     }
     
     
@@ -103,26 +118,15 @@ public class Juego {
     }
 
     
+   
     
-    
-    public Pokemon getSeleccionado() {
-        return seleccionado;
+    public Regalo_Td getPregalo() {
+        return pregalo;
     }
 
-    public void setSeleccionado(Pokemon seleccionado) {
-        this.seleccionado = seleccionado;
+    public void setPregalo(Regalo_Td regalo){
+        this.pregalo = regalo;
     }
-
-    
-    
-    public Regalo_Td getRegalo() {
-        return regalo;
-    }
-
-    public void setRegalo(Regalo_Td regalo) {
-        this.regalo = regalo;
-    }
-
     
     
     
@@ -135,16 +139,6 @@ public class Juego {
     }
 
     
-    
-    
-    public int getCant_pk() {
-        return cant_pk;
-    }
-
-    public void setCant_pk(int cant_pk) {
-        this.cant_pk = cant_pk;
-    }
-
     
     public int getTamano() {
         return tamano;

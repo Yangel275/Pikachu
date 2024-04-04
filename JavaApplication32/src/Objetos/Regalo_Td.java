@@ -16,8 +16,8 @@ public class Regalo_Td {
     private Regalo_Td izq;
     private Regalo_Td der;
 
-    public Regalo_Td(int indice, String nombre, int costo, int relacion) {
-        this.indice = indice;
+    public Regalo_Td(String nombre, int costo, int relacion) {
+        this.indice = 0;
         this.nombre = nombre;
         this.costo = costo;
         this.relacion = relacion;

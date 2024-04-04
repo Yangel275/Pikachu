@@ -12,51 +12,63 @@ public class Pokemones {
     private static Pokemon[] pok_dis;
     private static int tamano;
 
-
+    
     public void inicio(){
-        Pokemones.setTamano(0);
+        this.setTamano(0);
     }
     
     public void agg_pk(Pokemon nuevo){
-        if(Pokemones.getTamano() == 0){
+        if(this.getTamano() == 0){
            Pokemon[] list = new Pokemon[1];
            list[0] = nuevo;
-           Pokemones.setPok_dis(list);
-           Pokemones.setTamano(1);
+           this.setPok_dis(list);
+           this.setTamano(1);
         }else{
-            Pokemon[] viejo = Pokemones.getPok_dis();
-            Pokemones.setTamano(Pokemones.getTamano() + 1);
-            Pokemon[] list = new Pokemon[Pokemones.getTamano()];
+            Pokemon[] viejo = this.getPok_dis();
+            this.setTamano(this.getTamano() + 1);
+            Pokemon[] list = new Pokemon[this.getTamano()];
             
             int j = -1;
-            for(int i =0 ; i < Pokemones.getTamano(); i++){
+            for(int i =0 ; i < this.getTamano(); i++){
                 list[i] = viejo[i];
                 j += 1;
             }
             
             list[j] = nuevo;
-            Pokemones.setPok_dis(list);
+            this.setPok_dis(list);
         }
     }
     
     
-    public static Pokemon[] getPok_dis() {
+    
+    public Pokemon[] getPok_dis() {
         return pok_dis;
     }
 
-    public static void setPok_dis(Pokemon[] aPok_dis) {
-        pok_dis = aPok_dis;
+    public void setPok_dis(Pokemon[] pok_dis) {
+        this.pok_dis = pok_dis;
     }
 
-
-
-    public static int getTamano() {
+    public String imprimir(){
+        String print = "";
+        for(int i = 0; i < this.getTamano(); i++){
+            print += this.getPok_dis()[i].imprimir();
+        }
+        return print;
+    }
+    
+    
+    public int getTamano() {
         return tamano;
     }
 
-    public static void setTamano(int aTamano) {
-        tamano = aTamano;
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
     }
+
+
+    
+    
     
     
 }

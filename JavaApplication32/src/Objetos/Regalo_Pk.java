@@ -16,8 +16,8 @@ public class Regalo_Pk {
     private Regalo_Pk izq;
     private Regalo_Pk der;
 
-    public Regalo_Pk(int indice, String nombre, int cantidad, int relacion) {
-        this.indice = indice;
+    public Regalo_Pk(String nombre, int cantidad, int relacion) {
+        this.indice = 0;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.relacion = relacion;

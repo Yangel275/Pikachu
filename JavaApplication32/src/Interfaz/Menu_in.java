@@ -4,8 +4,11 @@
  */
 package Interfaz;
 
+import ManejoCsv.Jugador;
+import Interfaz.Select_Pk;
 import Objetos.Tiempo;
 import Objetos.Juego;
+import Objetos.Pokemones;
 
 /**
  *
@@ -84,10 +87,11 @@ public class Menu_in extends javax.swing.JFrame {
         Juego juego = new Juego();
         juego.first_time();
         
+        Jugador archivo = new Jugador();
+        archivo.Down_PokDis_Estandar();
+        archivo.Down_RTd_Estandar();
         
-        Menu_prin ventana = new Menu_prin();
-        
-        
+        Select_Pk ventana = new Select_Pk();
         this.setVisible(false);
         ventana.setVisible(true);
         

@@ -1,10 +1,10 @@
-Indice,Regalo,Costo,Efecto
-1,Baya Aranja,100,100
-2,Baya Caquic,200,250
-3,Poke ball,300,400
-4,Baya Zreza,400,550
-5,Baya Zanama,500,700
-6,Baya Ziuela,600,850
-7,Baya Zidra,700,1000
-8,Baya Enigma,800,1150
-9,Caramelo raro,900,1300
+Regalo,Costo,Efecto
+Baya Aranja,100,100
+Baya Caquic,200,250
+Poke ball,300,400
+Baya Zreza,400,550
+Baya Zanama,500,700
+Baya Ziuela,600,850
+Baya Zidra,700,1000
+Baya Enigma,800,1150
+Caramelo raro,900,1300
