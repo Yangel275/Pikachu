@@ -4,17 +4,26 @@
  */
 package javaapplication32;
 
+import Objetos.Tiempo;
+import Interfaz.Menu_in;
+
+
 /**
  *
  * @author yangel
  */
-public class JavaApplication32 {
+
+public class Pikachu {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)  {
+        Menu_in ventana = new Menu_in();
+        ventana.setVisible(true);
     }
+        
+        
+        
     
 }
