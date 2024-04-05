@@ -14,6 +14,7 @@ public class Pokemon {
     private int indice;
     private String nombre; 
     private Regalo_Pk regalo;
+    private int tamano;
     private int relacion;
     private String[] estado;
     private String emocion;
@@ -25,6 +26,7 @@ public class Pokemon {
         this.relacion = relacion;
         this.estado = null;
         this.emocion = null;
+        this.tamano = 0;
     }
 
     public void disparador_aumento(int indice){
@@ -44,11 +46,8 @@ public class Pokemon {
         
         Orden nv = new Orden();
         nv.setPokemones(regalos);
-        regalos = nv.men_may_Pk();
         
-        for(int i = 1; i <= regalos.length; i++){
-            this.insertar_RPk(regalos[i]);
-        }
+        this.setRegalo(nv.getpRPk());
     }
     
     public Regalo_Pk buscar(Regalo_Pk regalo,  int indice){
@@ -74,17 +73,6 @@ public class Pokemon {
         }
            
         return buscado;
-    }
-    
-    
-    public void insertar_RPk(Regalo_Pk regalo){
-        if(this == null){
-            this.setRegalo(regalo);   
-        }else{
-            this.getRegalo().insertar(regalo);
-        }
-    
-    
     }
     
     
@@ -120,13 +108,26 @@ public class Pokemon {
     
     public String imprimir(){
         String imprimir = null;
-        imprimir = Integer.toBinaryString(this.getIndice()) + ".- " + this.getNombre()+"\n";
-        imprimir += "Relación: +"+Integer.toBinaryString(this.getRelacion())+"Emoción: "+this.getEmocion()+"\n\n";
+        imprimir = Integer.toString(this.getIndice()) + ".- " + this.getNombre()+"\n";
+        imprimir += "Relación: +"+Integer.toBinaryString(this.getRelacion())+"  Emoción: "+this.getEmocion()+"\n\n";
         return imprimir;
     }
     
+    public void disp_Nd(){
+        Regalo_Pk inicial = this.getRegalo();
+        this.print(inicial);
+    }
     
-    
+    public void print(Regalo_Pk inicial){
+        if(inicial == null){
+            return;
+        }
+       this.print(inicial.getIzq());
+      
+       this.print(inicial.getDer());
+        
+        
+    }
     
     public int getIndice() {
         return indice;
@@ -188,6 +189,20 @@ public class Pokemon {
     
     public void setEmocion(String emocion) {
         this.emocion = emocion;
+    }
+
+    /**
+     * @return the tamano
+     */
+    public int getTamano() {
+        return tamano;
+    }
+
+    /**
+     * @param tamano the tamano to set
+     */
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
     }
     
     

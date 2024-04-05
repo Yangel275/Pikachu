@@ -27,7 +27,7 @@ public class Regalo_Pk {
 
     
     public void insertar(Regalo_Pk nuevo){
-        if(nuevo.getIndice() < this.getIndice()){
+        if(nuevo.getCantidad() < this.getCantidad()){
             //Insertar habitación conectada en forma de su hoja en el lado izquierdo
             if(this.getIzq() == null){
                 this.setIzq(nuevo);
@@ -45,8 +45,34 @@ public class Regalo_Pk {
     }
     
 
+    public String imprimir(){
+        String imprimir = "";
+        imprimir += "Nombre: "+this.getNombre()+"\n";
+        imprimir += "Índice: "+this.getIndice()+" Cantidad: "+this.getCantidad()+" Relacion: +"+this.getRelacion()+"\n";
+        return imprimir;
+    }
 
-
+    
+    
+    public String Nodos(){
+        String imprimir = "\n Nombre: " + this.getNombre() +"\n";
+        if(this.getIzq()==null){
+            if(this.getDer()==null){
+                imprimir += "Nodo izq: No tiene Nodo der: No tiene \n" ;
+            }else{
+                imprimir += "Nodo izq: No tiene"  + " Nodo der: " +this.getDer().getNombre()+ "\n";
+            }
+            
+        }
+        if(this.getDer()==null){
+            imprimir += "Nodo izq: " + this.getIzq().getNombre() + "Nodo der: No tiene"+"\n";
+        }else{
+            imprimir += "Nodo izq: " + this.getIzq().getNombre() + "Nodo der: " +this.getDer().getNombre()+"\n";
+        }
+        return imprimir;
+        
+    }
+    
     
     public int getIndice() {
         return indice;

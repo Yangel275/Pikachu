@@ -10,27 +10,25 @@ package Objetos;
  */
 public class Tienda {
     private static Regalo_Td inicial;
+    private static int tamano;
 
-    public void insertar(Regalo_Td hab){
-        if(this.getInicial() == null){
-            this.setInicial(hab);   
-        }else{
-            this.getInicial().insertar(hab);
-        }
-    }
-
-    /**
-     * @return the inicial
-     */
+    
+    
     public Regalo_Td getInicial() {
         return inicial;
     }
 
-    /**
-     * @param inicial the inicial to set
-     */
     public void setInicial(Regalo_Td inicial) {
         this.inicial = inicial;
+    }
+
+    
+    public int getTamano() {
+        return tamano;
+    }
+
+     public void setTamano(int tamano) {
+        this.tamano = tamano;
     }
 
     

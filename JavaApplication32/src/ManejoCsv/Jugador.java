@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ManejoCsv;
+import Objetos.Tienda;
 import ManejoCsv.Orden;
 import Objetos.Juego;
 import Objetos.Pokemon;
 import Objetos.Pokemones;
 import java.io.*;
 import java.util.Scanner;
+
 
 import Objetos.Regalo_Pk;
 import Objetos.Regalo_Td;
@@ -29,7 +31,7 @@ public class Jugador {
 
         
         
-        try (Scanner scFile = new Scanner(new File("/Estandar/Pikachu - Disponible.csv"))) {
+        try (Scanner scFile = new Scanner(new File("./Pikachu - Disponible.csv"))) {
             while (scFile.hasNextLine()) {
                 if (inicio == 0) {
                     new_Pk = scFile.nextLine().split(",");
@@ -37,8 +39,10 @@ public class Jugador {
                 }else{
                     new_Pk = scFile.nextLine().split(",");
                     indice += 1;
-                    pk = new Pokemon( Integer.parseInt(new_Pk[1]), new_Pk[0], Integer.parseInt(new_Pk[2]));
-                    nueva = new Pokemon[indice];
+                    
+                    pk = new Pokemon( Integer.parseInt(new_Pk[0]), new_Pk[1], Integer.parseInt(new_Pk[2]));
+   
+                    nueva = new Pokemon[indice]; 
                     if (indice > 1) {
                         for (int i = 0; i < vieja.length; i++) {
                             nueva[i] = vieja[i];
@@ -54,15 +58,21 @@ public class Jugador {
             System.out.println("Error");
         }
 
+        
         Pokemones disp = new Pokemones();
-        disp.setPok_dis(nueva);
+        disp.inicio();
+        for(int i = 0 ; i< nueva.length ; i++){
+            disp.agg_pk(nueva[i]);
+            
+        
+        }
         
         this.Down_RPk_Estandar();
-        this.Down_Estado_Estandar();
+        
     } 
     
     public void Down_RPk_Estandar() {
-           
+        
         Regalo_Pk[] nueva = null;
         Regalo_Pk[] vieja = null;
         Regalo_Pk regalo_pk;
@@ -72,7 +82,7 @@ public class Jugador {
 
         
         
-        try (Scanner scFile = new Scanner(new File("/Estandar/Pikachu - Regalo recibido.csv"))) {
+        try (Scanner scFile = new Scanner(new File("./Pikachu - Regalo recibido.csv"))) {
             while (scFile.hasNextLine()) {
                 if (inicio == 0) {
                     new_RPk = scFile.nextLine().split(",");
@@ -85,10 +95,16 @@ public class Jugador {
                     if (indice > 1) {
                         for (int i = 0; i < vieja.length; i++) {
                             nueva[i] = vieja[i];
+                            
                         }
+                        
                     }
                     
+                    
+                        
+                    
                     nueva[indice - 1] = regalo_pk;
+                    
                     vieja = nueva;
                 }
             }
@@ -97,18 +113,51 @@ public class Jugador {
             System.out.println("Error");
         }
 
+        
+        
         Orden orden = new Orden();
         orden.setPokemones(nueva);
-
+        
         nueva = orden.men_may_Pk();
         
-        Pokemones arbol = new Pokemones();
+        orden.setPokemones(nueva);
         
-        for (int i = 0; i < arbol.getTamano(); i++) {
-           for (int j = 0; i < nueva.length; i++){
-               arbol.getPok_dis()[i].insertar_RPk(nueva[j]);
-           }
-        }   
+        
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        
+        
+        Regalo_Pk[] nuevo = orden.ord_Pk();
+        
+        orden.setPokemones(nuevo);
+        
+        
+        
+        Regalo_Pk nodo = orden.pNodoPk();
+        orden.setpRPk(nodo);
+        
+        System.out.println(nodo.imprimir());
+        System.out.println(nodo.getIzq().imprimir());
+        System.out.println(nodo.getDer().imprimir());
+        
+        
+        
+        Pokemones list = new Pokemones();
+        
+        for (int i = 0; i < list.getTamano(); i++) {
+            list.getPok_dis()[i].setRegalo(orden.getpRPk());
+            list.getPok_dis()[i].setTamano(orden.getTmPk());
+            
+        }
+        
+        Regalo_Pk inicial = list.getPok_dis()[0].getRegalo();
+        
+        
+        list.getPok_dis()[0].disp_Nd();
+        
+        
+        
     }
 
     public void Down_RTd_Estandar() {
@@ -123,7 +172,7 @@ public class Jugador {
 
         
         
-        try (Scanner scFile = new Scanner(new File("/Estandar/Pikachu - Regalos.csv"))) {
+        try (Scanner scFile = new Scanner(new File("./Pikachu - Regalos.csv"))) {
             while (scFile.hasNextLine()) {
                 if (inicio == 0) {
                     new_td = scFile.nextLine().split(",");
@@ -150,17 +199,17 @@ public class Jugador {
         Orden orden = new Orden();
         orden.setTienda(nueva);
 
-        nueva = orden.ord_Td();
+        Regalo_Td pNodo = orden.men_may_Td();
         
         
 
-        Juego arbol = new Juego();
+        Tienda arbol = new Tienda();
         
-
-        for (int i = 0; i < nueva.length; i++) {
-            arbol.agg_RTd(nueva[i]);
-            
-        }   
+        arbol.setInicial(pNodo);
+        arbol.setTamano(orden.getTmTD());
+           
+        
+        
     }
     
     public void Down_Estado_Estandar(){
@@ -172,7 +221,7 @@ public class Jugador {
 
         
         
-        try (Scanner scFile = new Scanner(new File("/Estandar/Pikachu - Estado Pokemon.csv"))) {
+        try (Scanner scFile = new Scanner(new File("./Pikachu - Estado Pokemon.csv"))) {
             while (scFile.hasNextLine()) {
                 if (inicio == 0) {
                     new_est = scFile.nextLine().split(",");
@@ -191,7 +240,14 @@ public class Jugador {
 
     }
     
-    
+    public void prueba(){
+        File f = new File("./Pikachu - Disponible.csv");
+        try (FileWriter fw = new FileWriter(f);) {
+            fw.write("num_hab,tipo_hab,piso\n");
+        } catch (Exception e) {
+            System.out.println("Se a producido un error");
+        }
+    }
     
 }
 

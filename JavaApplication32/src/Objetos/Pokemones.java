@@ -18,25 +18,35 @@ public class Pokemones {
     }
     
     public void agg_pk(Pokemon nuevo){
+        
+        
+        if(this.getTamano() > 0){
+            Pokemon[] viejo = this.getPok_dis();
+            
+            
+            this.setTamano(this.getTamano() + 1);
+          
+            Pokemon[] list = new Pokemon[this.getTamano()];
+            
+            
+            for(int i = 0 ; i < this.getTamano()-1; i++){
+                list[i] = viejo[i];
+                
+            }
+            
+            int i = this.getTamano() - 1;
+            list[i] = nuevo;
+            this.setPok_dis(list);
+        }
+        
+        
         if(this.getTamano() == 0){
            Pokemon[] list = new Pokemon[1];
            list[0] = nuevo;
            this.setPok_dis(list);
            this.setTamano(1);
-        }else{
-            Pokemon[] viejo = this.getPok_dis();
-            this.setTamano(this.getTamano() + 1);
-            Pokemon[] list = new Pokemon[this.getTamano()];
-            
-            int j = -1;
-            for(int i =0 ; i < this.getTamano(); i++){
-                list[i] = viejo[i];
-                j += 1;
-            }
-            
-            list[j] = nuevo;
-            this.setPok_dis(list);
         }
+        
     }
     
     
@@ -53,6 +63,7 @@ public class Pokemones {
         String print = "";
         for(int i = 0; i < this.getTamano(); i++){
             print += this.getPok_dis()[i].imprimir();
+             
         }
         return print;
     }

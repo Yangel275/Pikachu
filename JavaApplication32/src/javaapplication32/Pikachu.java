@@ -4,9 +4,12 @@
  */
 package javaapplication32;
 
-import Objetos.Tiempo;
-import Interfaz.Menu_in;
 
+import Interfaz.Menu_in;
+import ManejoCsv.Jugador;
+import Objetos.Juego;
+import Objetos.Pokemones;
+import Objetos.Regalo_Pk;
 
 /**
  *
@@ -19,9 +22,18 @@ public class Pikachu {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
-        Menu_in ventana = new Menu_in();
-        ventana.setVisible(true);
+        Jugador prueba = new Jugador();
+        Pokemones prueba2 = new Pokemones();
+        prueba.Down_PokDis_Estandar();
+        
+       
+        
+        
+        
+        
     }
+
+    
         
         
         

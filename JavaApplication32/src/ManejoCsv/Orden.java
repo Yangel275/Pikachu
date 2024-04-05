@@ -13,9 +13,13 @@ import Objetos.Regalo_Td;
  */
 public class Orden {
     private Regalo_Td[] tienda;
+    private Regalo_Td pRTd;
+    private int tmTD; 
     private Regalo_Pk[] pokemones;
+    private Regalo_Pk pRPk;
+    private int tmPk;
     
-    public Regalo_Td[] men_may_Td(){
+    public Regalo_Td men_may_Td(){
         Regalo_Td[] lista = this.getTienda();
         Regalo_Td[] viejo = null;
         Regalo_Td[] nuevo = null;
@@ -62,8 +66,10 @@ public class Orden {
         
         nuevo = arreglo.ord_Td();
         
-        return nuevo;
+        this.setTienda(nuevo);
+        this.pNodoTd();
     
+        return this.getpRTd();
     }
     
     public Regalo_Td[] ord_Td(){
@@ -165,10 +171,15 @@ public class Orden {
         return ordenada;  
         
     }
-    
-
-    
-    
+   
+   public void pNodoTd() {
+       this.setTmTD(this.getTienda().length);
+       this.setpRTd(this.getTienda()[0]);
+       for(int i = 1; i <this.getTienda().length; i++){
+           this.getpRTd().insertar(this.getTienda()[i]);
+       }
+       
+   }
     
     
     
@@ -213,16 +224,18 @@ public class Orden {
             }
             
         }
-        Orden arreglo = new Orden();
-        for(int l = 0; l < nuevo.length; l++){
-            nuevo[l].setIndice(l);
+        
+        for(int i = 0; i < nuevo.length; i++){
+            nuevo[i].setIndice(i+1);
         }
+        
+        Orden arreglo = new Orden();
         
         arreglo.setPokemones(nuevo);
         
-        nuevo = arreglo.ord_Pk();
         
         return nuevo;
+        
     
     }
     
@@ -325,10 +338,25 @@ public class Orden {
 
         }
         
+        this.setPokemones(ordenada);
         return ordenada;
             
     
     }
+    
+    
+    public Regalo_Pk pNodoPk() {
+       this.setTmPk(this.getPokemones().length);
+       Regalo_Pk inicial = this.getPokemones()[0];
+       for(int i = 1; i < this.getPokemones().length; i++){
+           Regalo_Pk nuevo = this.getPokemones()[i]; 
+           inicial.insertar(nuevo);
+       }
+       
+       
+       return inicial;
+        
+   }
     
     
     
@@ -351,6 +379,45 @@ public class Orden {
 
     public void setPokemones(Regalo_Pk[] pokemones) {
         this.pokemones = pokemones;
+    }
+
+    
+    public Regalo_Td getpRTd() {
+        return pRTd;
+    }
+
+    
+    public void setpRTd(Regalo_Td pRTd) {
+        this.pRTd = pRTd;
+    }
+
+    
+    
+    public Regalo_Pk getpRPk() {
+        return pRPk;
+    }
+
+    public void setpRPk(Regalo_Pk pRPk) {
+        this.pRPk = pRPk;
+    }
+
+    public int getTmTD() {
+        return tmTD;
+    }
+
+    public void setTmTD(int tmTD) {
+        this.tmTD = tmTD;
+    }
+
+    public int getTmPk() {
+        return tmPk;
+    }
+
+    /**
+     * @param tmPk the tmPk to set
+     */
+    public void setTmPk(int tmPk) {
+        this.tmPk = tmPk;
     }
 
         
