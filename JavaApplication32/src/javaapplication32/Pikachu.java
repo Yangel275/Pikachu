@@ -22,9 +22,8 @@ public class Pikachu {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
-        Jugador prueba = new Jugador();
-        Pokemones prueba2 = new Pokemones();
-        prueba.Down_PokDis_Estandar();
+        Menu_in ventana = new Menu_in();
+        ventana.setVisible(true);
         
        
         
